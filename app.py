@@ -2,6 +2,10 @@ import os
 from flask import Flask
 from flask_pymongo import PyMongo
 
+from os import path
+if path.exists("env.py"):
+    import env 
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.getenv('MONGO_DBNAME')
