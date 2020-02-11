@@ -30,26 +30,26 @@
 </div>
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <h1>Recipes</h1>
-        {% for recipe in recipes %}
-        <div class="col s12 m6 l3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{ recipe.image_url}}">
-                    <span class="card-title">{{ recipe.recipe_name }}</span>
-                </div>
-                <div class="card-content">
-                    <p>Cuisine: {{ recipe.cuisine_name }}</p>
-                    <p>Difficulty: {{ recipe.difficulty }}</p>
-                    <p>Serves: {{ recipe.serves }}</p>
-                    <p>Time: {{ recipe.prep_time }}</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">This is a link</a>
-                </div>
+<div class="row">
+    <h1>Recipes</h1>
+    {% for recipe in recipes %}
+    <div class="col s12 m6 l3">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ recipe.image_url}}">
+                <span class="card-title">{{ recipe.recipe_name }}</span>
+            </div>
+            <div class="card-content">
+                <p><i class="material-icons prefix">location_on</i> Cuisine: {{ recipe.cuisine_name }}</p>
+                <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: {{ recipe.difficulty }}</p>
+                <p><i class="material-icons prefix">people</i> Serves: {{ recipe.serves }}</p>
+                <p><i class="material-icons prefix">access_time</i>Time: {{ recipe.prep_time }}</p>
+            </div>
+            <div class="card-action">
+                <a href="#">This is a link</a>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 {% endblock %}
