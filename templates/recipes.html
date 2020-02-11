@@ -27,11 +27,42 @@
             </div>
         </nav>
     </header>
+    <div class="slider">
+        <ul class="slides">
+          <li>
+            <img src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"> <!-- random image -->
+            <div class="caption center-align">
+              <h3>Welcome to online Culinary World!</h3>
+              <h5 class="light grey-text text-lighten-3">Your best receipes in one place.</h5>
+            </div>
+          </li>
+          <li>
+            <img src="https://www.thesun.co.uk/wp-content/uploads/2019/11/Nandos.jpg?strip=all&w=960"> <!-- random image -->
+            <div class="caption left-align">
+              <h3>Easy Access</h3>
+              <h5 class="light grey-text text-lighten-3">Variety of receipes from all world.</h5>
+            </div>
+          </li>
+          <li>
+            <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+            <div class="caption right-align">
+              <h3>Right Aligned Caption</h3>
+              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+          </li>
+        </ul>
+      </div>
     <!-- Import jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script >
+        $(document).ready(function(){
+      $('.slider').slider();
+    });
+    </script>
 </body>
 
 </html>
