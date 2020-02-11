@@ -30,23 +30,26 @@
 </div>
 {% endblock %}
 {% block content %}
-<div class="container">
     <div class="row">
+        <h1>Recipes</h1>
+        {% for recipe in recipes %}
         <div class="col s12 m6 l3">
             <div class="card">
                 <div class="card-image">
-                    <img src="images/sample-1.jpg">
-                    <span class="card-title">Card Title</span>
+                    <img src="{{ recipe.image_url}}">
+                    <span class="card-title">{{ recipe.recipe_name }}</span>
                 </div>
                 <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <p>Cuisine: {{ recipe.cuisine_name }}</p>
+                    <p>Difficulty: {{ recipe.difficulty }}</p>
+                    <p>Serves: {{ recipe.serves }}</p>
+                    <p>Time: {{ recipe.prep_time }}</p>
                 </div>
                 <div class="card-action">
                     <a href="#">This is a link</a>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-</div>
 {% endblock %}
