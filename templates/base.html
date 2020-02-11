@@ -26,7 +26,7 @@
                 <a href="{{ url_for('all_recipes') }}" class="brand-logo">Culinary World</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a class="active" href="{{ url_for('all_recipes') }}">Recipes</a></li>
-                    <li><a href="">Add Recipe</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                 </ul>
             </div>
         </nav>
@@ -48,6 +48,7 @@
     <script>
         $(document).ready(function () {
             $('.slider').slider();
+            $('select').formSelect();
         });
     </script>
 
