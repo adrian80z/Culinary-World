@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -12,23 +12,27 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% if title %}
+    <title>Culinary World | {{ title }}</title>
+    {% else %}
     <title>Culinary World</title>
+    {% endif %}
 </head>
 
 <body>
     <header class="site-header">
         <nav class="navigation-bar">
             <div class="nav-wrapper">
-                <a href="" class="brand-logo">Culinary World</a>
+                <a href="{{ url_for('all_recipes') }}" class="brand-logo">Culinary World</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="active" href="">Recipes</a></li>
+                    <li><a class="active" href="{{ url_for('all_recipes') }}">Recipes</a></li>
                     <li><a href="">Add Recipe</a></li>
                 </ul>
             </div>
         </nav>
     </header>
     <main class="container">
-
+        {% block content %}{% endblock %}
     </main>
     <footer>
         <p>Culinary World &copy; 2020</p>
