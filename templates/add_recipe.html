@@ -15,10 +15,10 @@
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">location_on</i>
                     <select id="difficulty" name="difficulty" required>
-                        <option value="" disabled selected>Choose The Difficulty</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
+                        <option value="" disabled selected>Choose Cuisine</option>
+                        {% for type in cuisine_type %}
+                        <option value="{{ type.cuisine_name }}">{{ type.cuisine_name }}/option>
+                        {% endfor %}
                     </select>
                 </div>
 
@@ -60,7 +60,7 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend>Recipe Details</legend>
+            <legend>Ingredients</legend>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">shopping_basket</i>
@@ -70,8 +70,7 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend>Recipe Details</legend>
-            <h6>Method</h6>
+            <legend>Preparation Steps</legend>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">list</i>
