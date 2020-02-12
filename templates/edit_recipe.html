@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Edit Recipe</h3>
+<div class="row">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+        <fieldset>
+            <legend>Recipe Details</legend>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                    <label for="recipe_name">Recipe Name</label>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">location_on</i>
+                    <select id="category" name="cuisine_name" required>
+                        <option value="" disabled selected>Choose Cuisine</option>
+                        {% for type in cuisine_type %}
+                        <option value="{{ type.cuisine_name.capitalize() }}">{{ type.cuisine_name.capitalize() }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">restaurant_menu</i>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="" disabled selected>Choose The Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">people</i>
+                    <input id="serves" name="serves" type="text" class="validate">
+                    <label for="serves">Serves</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">access_time</i>
+                    <input id="prep_time" name="prep_time" type="text" class="validate">
+                    <label for="prep_time">Preparation Time</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="author" name="author" type="text" class="validate">
+                    <label for="author">Author</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">add_a_photo</i>
+                    <input id="image_url" name="image_url" type="text" class="validate">
+                    <label for="image_url">Image URL</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">assignment</i>
+                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Ingredients</legend>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">shopping_basket</i>
+                    <textarea name="ingredients" id="ingredients" class="materialize-textarea" required></textarea>
+                    <label for="ingredients">Ingredients</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Preparation Steps</legend>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">list</i>
+                    <textarea name="method_one" id="method_one" class="materialize-textarea" required></textarea>
+                    <label for="icon_prefix">Step One</label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">Update Recipe
+                    <i class="material-icons right">playlist_add</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
