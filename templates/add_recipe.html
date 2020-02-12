@@ -2,7 +2,7 @@
 {% block content %}
 <h3>Add Recipe Details:</h3>
 <div class="row">
-    <form action="" method="POST" class="col s12">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
         <fieldset>
             <legend>Recipe Details</legend>
             <div class="row">
@@ -17,7 +17,7 @@
                     <select id="difficulty" name="difficulty" required>
                         <option value="" disabled selected>Choose Cuisine</option>
                         {% for type in cuisine_type %}
-                        <option value="{{ type.cuisine_name }}">{{ type.cuisine_name }}/option>
+                        <option value="{{ type.cuisine_name }}">{{ type.cuisine_name.capitalize() }} </option>
                         {% endfor %}
                     </select>
                 </div>

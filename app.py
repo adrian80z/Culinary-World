@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_pymongo import PyMongo
 
 from os import path
@@ -24,7 +24,8 @@ def all_recipes():
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template("add_recipe.html", title="Add Recipe")
+    return render_template("add_recipe.html", title="Add Recipe",
+    cuisine_type = mongo.db.cousine_type.find())
 
 
 if __name__ == "__main__":
