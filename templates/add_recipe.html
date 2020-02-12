@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <h3>Add Recipe Details:</h3>
 <div class="row">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
@@ -17,7 +18,8 @@
                     <select id="category" name="cuisine_name" required>
                         <option value="" disabled selected>Choose Cuisine</option>
                         {% for type in cuisine_type %}
-                        <option value="{{ type.cuisine_name.capitalize() }}">{{ type.cuisine_name.capitalize() }} </option>
+                        <option value="{{ type.cuisine_name.capitalize() }}">{{ type.cuisine_name.capitalize() }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -88,7 +90,5 @@
         </div>
     </form>
 </div>
-
-
 
 {% endblock %}
