@@ -46,6 +46,15 @@ def recipe_details(recipe_id):
     )
 
 
+@app.route("/edit_recipe/<recipe_id>")
+def edit_recipe(recipe_id):
+    recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    cousine_categories = mongo.db.cousine_type.find()
+    return render_template(
+        "edit_recipe.html", recipes=recipe_details, cuisine_type=cousine_categories
+    )
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=True)
 
