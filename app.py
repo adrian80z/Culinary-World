@@ -26,7 +26,7 @@ def all_recipes():
 @app.route("/add_recipe")
 def add_recipe():
     return render_template(
-        "add_recipe.html", title="Add Recipe", cuisine_type=mongo.db.cousine_type.find()
+        "add_recipe.html", title="Add Recipe", cuisine_type=mongo.db.cuisine_type.find()
     )
 
 
@@ -40,22 +40,22 @@ def insert_recipe():
 @app.route("/recipes/<recipe_id>")
 def recipe_details(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    cousine_categories = mongo.db.cousine_type.find()
+    cuisine_categories = mongo.db.cuisine_type.find()
     return render_template(
-        "recipe_details.html", recipes=recipe_details, cuisine_type=cousine_categories
+        "recipe_details.html", recipes=recipe_details, cuisine_type=cuisine_categories
     )
 
 
 @app.route("/edit_recipe/<recipe_id>")
 def edit_recipe(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    cousine_categories = mongo.db.cousine_type.find()
+    cuisine_categories = mongo.db.cuisine_type.find()
     return render_template(
-        "edit_recipe.html", recipes=recipe_details, cuisine_type=cousine_categories
+        "edit_recipe.html", recipes=recipe_details, cuisine_type=cuisine_categories
     )
 
 
-@app.route("/update_recipe/<recipe_id>")
+@app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
     recipes.update({"_id": ObjectId(recipe_id)},
@@ -66,12 +66,12 @@ def update_recipe(recipe_id):
         'serves' : request.form.get('serves'),
         'prep_time' : request.form.get('prep_time'),
         'author': request.form.get('author'),
-        'image_url' : request.form.get('image_url),
+        'image_url' : request.form.get('image_url'),
         'description' : request.form.get('description'),
         'ingredients' : request.form.get('ingredients'),
         'step_one' : request.form.get('step_one')
     })
-    return redirect(url_for('all_recipes'))
+    return redirect(url_for('recipes'))
 
 
 
