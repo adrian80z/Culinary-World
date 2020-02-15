@@ -3,7 +3,7 @@
 
 <h3>Edit Recipe</h3>
 <div class="row">
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+    <form action="{{ url_for('update_recipe', recipe_id=recipes._id) }}" method="POST" class="col s12">
         <fieldset>
             <legend>Recipe Details</legend>
             <div class="row">
@@ -18,14 +18,14 @@
                     <i class="material-icons prefix">location_on</i>
                     <select id="category" name="cuisine_name" required>
                         <option value="" disabled selected>Choose Cuisine</option>
-                        {% for type in cousine_type %}
-                        {% if type.cuisine_name == recipes.cuisine_name %}
-                        <option value="{{ type.cuisine_name }}" selected>
-                            {{ type.cuisine_name }}
+                        {% for type in cuisine_type %}
+                        {% if type.c_type == recipes.cuisine_name %}
+                        <option value="{{ type.c_type }}" selected>
+                            {{ type.c_type }}
                         </option>
                         {% else %}
-                        <option value="{{ type.cuisine_name }}">
-                            {{ type.cuisine_name }}
+                        <option value="{{ type.c_type }}">
+                            {{ type.c_type }} 
                             {% endif %}
                             {% endfor %}
                     </select>
@@ -35,9 +35,13 @@
                     <i class="material-icons prefix">restaurant_menu</i>
                     <select id="difficulty" name="difficulty" required>
                         <option value="" disabled selected>Choose Difficulty</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
+                        {% for diff in difficulty %}
+                        {% if difficulty == diff %}
+                        <option value="{{ diff }}" selected>{{diff}}</option>
+                        {% else %}
+                        <option value="{{diff}}">{{diff}}</option>
+                        {% endif %}
+                        {% endfor %}
                     </select>
                 </div>
 
