@@ -15,10 +15,10 @@
 
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">location_on</i>
-                    <select id="category" name="cuisine_name" required>
+                    <select id="category" name="c_type" required>
                         <option value="" disabled selected>Choose Cuisine</option>
                         {% for type in cuisine_type %}
-                        <option value="{{ type.cuisine_name.capitalize() }}">{{ type.cuisine_name.capitalize() }}
+                        <option value="{{ type.c_type }}">{{ type.c_type }}
                         </option>
                         {% endfor %}
                     </select>
@@ -27,7 +27,7 @@
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">restaurant_menu</i>
                     <select id="difficulty" name="difficulty" required>
-                        <option value="" disabled selected>Choose The Difficulty</option>
+                        <option value="" disabled selected>Choose Difficulty</option>
                         <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
@@ -56,17 +56,23 @@
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">assignment</i>
-                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                    <textarea name="description" id="description" class="materialize-textarea" required></textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Ingredients</legend>
-            <div class="row">
+            <div class="row" id="items">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">shopping_basket</i>
-                    <textarea name="ingredients" id="ingredients" class="materialize-textarea" required></textarea>
+                    <input name="ingredients" id="ingredients" class="validate" required>
+                    <label for="ingredients">Ingredients</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">shopping_basket</i>
+                    <input name="ingredients" id="ingredients" class="validate" required>
                     <label for="ingredients">Ingredients</label>
                 </div>
             </div>
@@ -76,8 +82,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">list</i>
-                    <textarea name="method_one" id="method_one" class="materialize-textarea" required></textarea>
-                    <label for="icon_prefix">Step One</label>
+                    <input name="method_one" id="method_one" class="validate" required>
+                    <label for="method_one">Step One</label>
                 </div>
             </div>
         </fieldset>
