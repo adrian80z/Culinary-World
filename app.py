@@ -71,7 +71,7 @@ def update_recipe(recipe_id):
         'ingredients' : request.form.get('ingredients'),
         'step_one' : request.form.get('step_one')
     })
-    return redirect(url_for('recipes'))
+    return redirect(url_for('all_recipes'))
 
 
 
