@@ -70,8 +70,9 @@
     </div>
     <div class="col s12 m8">
         <h3>Preparation Steps</h3>
-        {% for step in method %}
-        <p>{{ step }}</p>
+        {% for step in recipes.method %}
+        <p>{{ loop.index }}. {{ step }}</p>
+        {% endfor %}
     </div>
 </div>
 
