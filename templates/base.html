@@ -55,14 +55,24 @@
             $('select').formSelect();
             $('.modal').modal();
 
-
+            /* Dynamically add new input field to form*/
             $(".add-input-field").on("click", function () {
                 $('<input type="text" class="validate" name="ingredients" id="ingredients" placeholder="Add ingredient" required >').insertBefore(".add-input-field");
             });
 
-            /*removes last input element in ingredient list*/
+            /*removes last input element from ingredientsform*/
             $(".delete-last-field").on("click", function () {
                 $("#items input:last").remove();
+            });
+
+            /* Dynamically add new input field to form*/
+            $(".add-step").on("click", function () {
+                $('<input type="text" class="validate" name="method" id="method" placeholder="Add next step" required >').insertBefore(".add-step");
+            });
+
+            /*removes last input element from form*/
+            $(".delete-last-step").on("click", function () {
+                $("#steps input:last").remove();
             });
         });
     </script>
