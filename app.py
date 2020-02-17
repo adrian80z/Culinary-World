@@ -68,7 +68,7 @@ def update_recipe(recipe_id):
         'author': request.form.get('author'),
         'image_url' : request.form.get('image_url'),
         'description' : request.form.get('description'),
-        'ingredients' : request.form.get('ingredients'),
+        'ingredients' : request.form.getlist('ingredients'),
         'step_one' : request.form.get('step_one')
     })
     return redirect(url_for('all_recipes'))
