@@ -20,12 +20,10 @@
                         <option value="" disabled selected>Choose Cuisine</option>
                         {% for type in cuisine_type %}
                         {% if type.c_type == recipes.cuisine_name %}
-                        <option value="{{ type.c_type }}" selected>
-                            {{ type.c_type }}
+                        <option value="{{ type.c_type }}" selected>{{ type.c_type }}
                         </option>
                         {% else %}
-                        <option value="{{ type.c_type }}">
-                            {{ type.c_type }} 
+                        <option value="{{ type.c_type }}">{{ type.c_type }}
                             {% endif %}
                             {% endfor %}
                     </select>
@@ -35,13 +33,14 @@
                     <i class="material-icons prefix">restaurant_menu</i>
                     <select id="difficulty" name="difficulty" required>
                         <option value="" disabled selected>Choose Difficulty</option>
-                        {% for diff in difficulty %}
-                        {% if difficulty == diff %}
-                        <option value="{{ diff }}" selected>{{diff}}</option>
+                        {% if difficulty == recipes.difficulty %}
+                        <option value="{{ difficulty }}" selected>{{difficulty}}</option>
                         {% else %}
-                        <option value="{{diff}}">{{diff}}</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
                         {% endif %}
-                        {% endfor %}
+
                     </select>
                 </div>
 
@@ -76,22 +75,26 @@
         <fieldset>
             <legend>Ingredients</legend>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" id="items">
                     <i class="material-icons prefix">shopping_basket</i>
-                    <textarea name="ingredients" id="ingredients" class="materialize-textarea"
-                        required>{{ recipes.ingredients }}</textarea>
-                    <label for="ingredients">Ingredients</label>
+                    {% for ingredient in recipes.ingredients %}
+                    <input type="text" name="ingredients" id="ingredients" class="validate" value=" {{ ingredient }} " required >
+                    {% endfor %}
+                    <a class="waves-effect waves-light btn-small add-input-field">Add item</a>
+                    <a class="waves-effect waves-light btn-small delete-last-field">Delete Last</a>
                 </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Preparation Steps</legend>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" id="steps">
                     <i class="material-icons prefix">list</i>
-                    <textarea name="step_one" id="step_one" class="materialize-textarea"
-                        required>{{ recipes.step_one }}</textarea>
-                    <label for="icon_prefix">Step One</label>
+                    {% for step in recipes.method %}
+                    <textarea name="method" id="method" class="materialize-textarea" required>{{ step }}</textarea>
+                    {% endfor %}
+                    <a class="waves-effect waves-light btn-small add-step">Add item</a>
+                    <a class="waves-effect waves-light btn-small delete-last-step">Delete Last</a>
                 </div>
             </div>
         </fieldset>
