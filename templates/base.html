@@ -44,14 +44,28 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    <script>
+        function printRecipe() {
+            window.print();
+        }
+    </script>
     <script>
         $(document).ready(function () {
             $('.slider').slider();
             $('select').formSelect();
+            $('.modal').modal();
+
+
+            $(".add-input-field").on("click", function () {
+                $('<input type="text" class="validate" name="ingredients" id="ingredients" placeholder="Add ingredient" required >').insertBefore(".add-input-field");
+            });
+
+            /*removes last input element in ingredient list*/
+            $(".delete-last-field").on("click", function () {
+                $("#items input:last").remove();
+            });
         });
     </script>
-
 </body>
 
 </html>
