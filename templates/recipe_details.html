@@ -54,36 +54,24 @@
     <div class="col s12 m4">
         <div class="row">
             <h3>Ingredients:</h3>
+
             <table>
                 <tbody>
+                    <!--goes through ingredients array and displays-->
+                    {% for ingredient in recipes.ingredients %}
                     <tr>
-                        <td>{{  recipes.ingredients }}</td>
+                        <td>{{ ingredient }}</td>
                     </tr>
-                    <tr>
-                        <td>3/4 cup Plain Flour</td>
-                    </tr>
-                    <tr>
-                        <td>1 Egg</td>
-                    </tr>
-                    <tr>
-                        <td>2 tbs Starch</td>
-                    </tr>
-                    <tr>
-                        <td>3/4 cup Plain Flour</td>
-                    </tr>
-                    <tr>
-                        <td>3/4 cup Plain Flour</td>
-                    </tr>
-                    <tr>
-                        <td>3/4 cup Plain Flour</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
+
         </div>
     </div>
     <div class="col s12 m8">
         <h3>Preparation Steps</h3>
-        <p>{{ recipes.step_one}}</p>
+        {% for step in method %}
+        <p>{{ step }}</p>
     </div>
 </div>
 
