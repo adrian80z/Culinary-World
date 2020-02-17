@@ -75,10 +75,11 @@
         <fieldset>
             <legend>Preparation Steps</legend>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s12" id="steps">
                     <i class="material-icons prefix">list</i>
-                    <input name="method_one" id="method_one" class="validate" required>
-                    <label for="method_one">Step One</label>
+                    <input name="method" id="method" class="validate" required>
+                    <a class="waves-effect waves-light btn-small add-step">Add Step</a>
+					<a class="waves-effect waves-light btn-small delete-last-step">Delete Last</a>
                 </div>
             </div>
         </fieldset>
