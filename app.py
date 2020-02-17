@@ -44,7 +44,7 @@ def insert_recipe():
         'image_url' : request.form.get('image_url'),
         'description' : request.form.get('description'),
         'ingredients' : request.form.getlist('ingredients'),
-        'step_one' : request.form.getlist('step_one') 
+        'method' : request.form.getlist('method') 
         }
     )
     return redirect(url_for("all_recipes"))
@@ -82,7 +82,7 @@ def update_recipe(recipe_id):
         'image_url' : request.form.get('image_url'),
         'description' : request.form.get('description'),
         'ingredients' : request.form.getlist('ingredients'),
-        'step_one' : request.form.getlist('step_one')
+        'method' : request.form.getlist('method')
     })
     return redirect(url_for('all_recipes'))
 
