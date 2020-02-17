@@ -63,17 +63,12 @@
         </fieldset>
         <fieldset>
             <legend>Ingredients</legend>
-            <div class="row" id="items">
-                <div class="input-field col s12">
+            <div class="row" >
+                <div class="input-field col s12" id="items">
                     <i class="material-icons prefix">shopping_basket</i>
                     <input name="ingredients" id="ingredients" class="validate" required>
-                    <label for="ingredients">Ingredients</label>
-                </div>
-
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">shopping_basket</i>
-                    <input name="ingredients" id="ingredients" class="validate" required>
-                    <label for="ingredients">Ingredients</label>
+                    <a class="waves-effect waves-light btn-small add-input-field">Add item</a>
+					<a class="waves-effect waves-light btn-small delete-last-field">Delete Last</a>
                 </div>
             </div>
         </fieldset>
@@ -96,5 +91,4 @@
         </div>
     </form>
 </div>
-
 {% endblock %}
