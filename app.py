@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -35,16 +35,16 @@ def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(
         {
-        'recipe_name': request.form.get('recipe_name'),
-        'cuisine_name' : request.form.get('cuisine_name'),
-        'difficulty' : request.form.get('difficulty'),
-        'serves' : request.form.get('serves'),
-        'prep_time' : request.form.get('prep_time'),
-        'author': request.form.get('author'),
-        'image_url' : request.form.get('image_url'),
-        'description' : request.form.get('description'),
-        'ingredients' : request.form.getlist('ingredients'),
-        'method' : request.form.getlist('method') 
+            "recipe_name": request.form.get("recipe_name"),
+            "cuisine_name": request.form.get("cuisine_name"),
+            "difficulty": request.form.get("difficulty"),
+            "serves": request.form.get("serves"),
+            "prep_time": request.form.get("prep_time"),
+            "author": request.form.get("author"),
+            "image_url": request.form.get("image_url"),
+            "description": request.form.get("description"),
+            "ingredients": request.form.getlist("ingredients"),
+            "method": request.form.getlist("method"),
         }
     )
     return redirect(url_for("all_recipes"))
@@ -64,34 +64,58 @@ def edit_recipe(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisine_categories = mongo.db.cuisine_type.find()
     return render_template(
-        "edit_recipe.html", recipes=recipe_details, cuisine_type=cuisine_categories
+        "edit_recipe.html",
+        recipes=recipe_details,
+        cuisine_type=cuisine_categories,
+        recipe_id=recipe_id,
     )
 
 
 @app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
-    recipes.update({"_id": ObjectId(recipe_id)},
-    {
-        'recipe_name': request.form.get('recipe_name'),
-        'cuisine_name' : request.form.get('cuisine_name'),
-        'difficulty' : request.form.get('difficulty'),
-        'serves' : request.form.get('serves'),
-        'prep_time' : request.form.get('prep_time'),
-        'author': request.form.get('author'),
-        'image_url' : request.form.get('image_url'),
-        'description' : request.form.get('description'),
-        'ingredients' : request.form.getlist('ingredients'),
-        'method' : request.form.getlist('method')
-    })
-    return redirect(url_for('recipe_details', recipe_id=recipe_id))
-
+    recipes.update(
+        {"_id": ObjectId(recipe_id)},
+        {
+            "recipe_name": request.form.get("recipe_name"),
+            "cuisine_name": request.form.get("cuisine_name"),
+            "difficulty": request.form.get("difficulty"),
+            "serves": request.form.get("serves"),
+            "prep_time": request.form.get("prep_time"),
+            "author": request.form.get("author"),
+            "image_url": request.form.get("image_url"),
+            "description": request.form.get("description"),
+            "ingredients": request.form.getlist("ingredients"),
+            "method": request.form.getlist("method"),
+        },
+    )
+    return redirect(url_for("recipe_details", recipe_id=recipe_id))
 
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return redirect(url_for("all_recipes"))
+
+
+@app.route("/find_recipe", methods=["GET", "POST"])
+def find_recipe():
+    if request.method == "POST":
+       
+        # get search word
+        search_word = request.form.get("search")
+
+        # create the index
+        mongo.db.recipes.create_index([("$**", "text")])
+
+        # search with the search word that came through the search bar
+        query = mongo.db.recipes.find({"$text": {"$search": search_word}})
+        recipe = [recipe for recipe in query]
+      
+        # send recipes to page
+        return render_template("recipes.html", recipes=recipe, query=search_word)
+
+    # return render_template("recipes.html")
 
 
 if __name__ == "__main__":
