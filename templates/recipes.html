@@ -8,7 +8,7 @@
             <!-- random image -->
             <div class="caption center-align">
                 <h3>Welcome to online Culinary World!</h3>
-                <h5 class="light grey-text text-lighten-3">Your best receipes in one place.</h5>
+                <h5 class="light grey-text text-lighten-3">Your best receipes in one place</h5>
             </div>
         </li>
         <li>
@@ -16,14 +16,14 @@
             <!-- random image -->
             <div class="caption left-align">
                 <h3>Easy Access</h3>
-                <h5 class="light grey-text text-lighten-3">Variety of receipes from all world.</h5>
+                <h5 class="light grey-text text-lighten-3">Variety of receipes from all world</h5>
             </div>
         </li>
         <li>
             <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
             <div class="caption right-align">
-                <h3>Right Aligned Caption</h3>
-                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                <h3>Simple Share</h3>
+                <h5 class="light grey-text text-lighten-3">Share your favourite recipe</h5>
             </div>
         </li>
     </ul>
@@ -31,7 +31,24 @@
 {% endblock %}
 {% block content %}
 <div class="row">
-    <h1>Recipes</h1>
+    <div class="col s12">
+        <h1 class="header center pink-text text-lighten-3">CULINARY WORLD</h1>
+        <div class="row center">
+            <h5 class="header col s12 light grey-text text-lighten-1">Your best recipes from all the world</h5>
+        </div>
+        <div class="input-field col s12">
+            <form action="" method="POST">
+                <div class="input-field search-bar">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="search" name="search">
+                    <label for="search">Search...</label>
+                    <div class="card-action">
+                        <button type="submit" class="btn btn-info">Search </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     {% for recipe in recipes %}
     <div class="col s12 m6 l3">
         <div class="card">
