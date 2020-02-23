@@ -13,9 +13,15 @@
         <p>Added by: {{ recipes.author }}</p>
         <div class="row">
             <div class="col s12">
+                {% if 'username' in session %}
                 <a href="{{ url_for('edit_recipe', recipe_id = recipes._id) }}"
                     class="waves-effect waves-light btn">Edit</a>
                 <a href="#modal_confirm" class="waves-effect waves-light btn modal-trigger">Delete</a>
+                {% else %}
+                <div class="col s12">
+                    <p>You need to be loged in to edit or delete recipe</p>
+                </div>
+                {% endif %}
                 <!-- Modal Structure -->
                 <div id="modal_confirm" class="modal">
                     <div class="modal-content">
