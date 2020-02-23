@@ -21,12 +21,19 @@
 
 <body>
     <header class="site-header">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="#!">Logout</a></li>
+        </ul>
         <nav class="navigation-bar">
             <div class="nav-wrapper">
                 <a href="{{ url_for('all_recipes') }}" class="brand-logo">Culinary World</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a class="active" href="{{ url_for('all_recipes') }}">Recipes</a></li>
                     <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Dropdown<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -54,6 +61,7 @@
             $('.slider').slider();
             $('select').formSelect();
             $('.modal').modal();
+            $(".dropdown-trigger").dropdown();
 
             /* Dynamically add new input field to form*/
             $(".add-input-field").on("click", function () {
@@ -63,7 +71,7 @@
             /*removes last input element from ingredientsform*/
             $(".delete-last-field").on("click", function () {
                 $("#items input:last").remove();
-            }); 
+            });
 
             /* Dynamically add new input field to form*/
             $(".add-step").on("click", function () {
