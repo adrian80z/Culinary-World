@@ -25,9 +25,7 @@ def all_recipes():
     )
 
 
-app.route("/index")
-
-
+@app.route("/index")
 def index():
     if "username" in session:
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
@@ -79,6 +77,13 @@ def login():
 
     # return 'Invalid username/password combination'
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove the username from the session
+    session.pop("username", None)
+    return redirect(url_for("get_recipes"))
 
 
 @app.route("/add_recipe")
