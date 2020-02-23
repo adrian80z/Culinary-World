@@ -37,13 +37,15 @@
             <h5 class="header col s12 light grey-text text-lighten-1">Your best recipes from all the world</h5>
         </div>
         <div class="input-field col s12">
-            <form action="" method="POST">
+            <form action="{{ url_for('find_recipe') }}" method="POST">
                 <div class="input-field search-bar">
                     <i class="material-icons prefix">search</i>
-                    <input type="text" id="search" name="search">
+                    <input type="text" id="search" name="search" required>
                     <label for="search">Search...</label>
                     <div class="card-action">
                         <button type="submit" class="btn btn-info">Search </button>
+                        <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light"><i
+                                class="material-icons right">sync</i>Reset</a>
                     </div>
                 </div>
             </form>
