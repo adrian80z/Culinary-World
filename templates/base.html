@@ -23,17 +23,21 @@
     <header class="site-header">
         <!-- Dropdown Structure -->
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="#!">Logout</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
         <nav class="navigation-bar">
             <div class="nav-wrapper">
                 <a href="{{ url_for('all_recipes') }}" class="brand-logo">Culinary World</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a class="active" href="{{ url_for('all_recipes') }}">Recipes</a></li>
-                    <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+                    {% if 'username' in session %}
+                    <li><a href="{{url_for('add_recipe')}}">Add Recipe</a></li>
                     <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Dropdown<i
-                                class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Hi, {{ session.username }}<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+                    {% else %}
+                    <li><a class="modal-trigger" href="{{ url_for('index')}}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
