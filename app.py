@@ -73,17 +73,17 @@ def login():
             == login_user["password"]
         ):
             session["username"] = request.form["username"]
-            return redirect(url_for("get_recipes"))
+            return redirect(url_for("all_recipes"))
 
-    # return 'Invalid username/password combination'
-    return render_template("login.html")
+    return "Invalid username/password combination"
+    # return render_template("login.html")
 
 
 @app.route("/logout")
 def logout():
     # remove the username from the session
     session.pop("username", None)
-    return redirect(url_for("get_recipes"))
+    return redirect(url_for("all_recipes"))
 
 
 @app.route("/add_recipe")
