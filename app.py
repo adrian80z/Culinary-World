@@ -26,11 +26,13 @@ def all_recipes():
 
 
 app.route("/index")
+
+
 def index():
-     if 'username' in session:
-        return render_template('recipes.html', recipes = mongo.db.recipes.find())
-     else:
-        return render_template('login.html')
+    if "username" in session:
+        return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    else:
+        return render_template("login.html")
 
 
 @app.route("/register", methods=["POST", "GET"])
@@ -59,6 +61,24 @@ def register():
         return "That email already exists!"
 
     return render_template("registration.html")
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        users = mongo.db.users
+        login_user = users.find_one({"name": request.form.get("username")})
+
+    if login_user:
+        if (
+            bcrypt.hashpw(request.form["pass"].encode("utf-8"), login_user["password"])
+            == login_user["password"]
+        ):
+            session["username"] = request.form["username"]
+            return redirect(url_for("get_recipes"))
+
+    # return 'Invalid username/password combination'
+    return render_template("login.html")
 
 
 @app.route("/add_recipe")
