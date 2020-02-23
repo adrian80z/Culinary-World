@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, url_for, request, redirect, flash
+from flask import Flask, render_template, url_for, request, redirect, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_bcrypt import bcrypt
 
 from os import path
 
@@ -12,6 +13,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 mongo = PyMongo(app)
 
@@ -21,6 +23,34 @@ def all_recipes():
     return render_template(
         "recipes.html", title="Home", recipes=mongo.db.recipes.find()
     )
+
+
+@app.route("/register", methods=["POST", "GET"])
+def register():
+    if request.method == "POST":
+        users = mongo.db.users
+        existing_user = users.find_one({"name": request.form["username"]})
+        existing_email = users.find_one({"email": request.form["email"]})
+
+        if existing_user is None:
+            if existing_email is None:
+                hashpass = bcrypt.hashpw(
+                    request.form["pass"].encode("utf-8"), bcrypt.gensalt()
+                )
+                users.insert(
+                    {
+                        "name": request.form["username"],
+                        "password": hashpass,
+                        "email": request.form["email"],
+                    }
+                )
+                session["username"] = request.form["username"]
+                return redirect(url_for("index"))
+
+            return "That username already exists!"
+        return "That email already exists!"
+
+    return render_template("registration.html")
 
 
 @app.route("/add_recipe")
@@ -101,7 +131,7 @@ def delete_recipe(recipe_id):
 @app.route("/find_recipe", methods=["GET", "POST"])
 def find_recipe():
     if request.method == "POST":
-       
+
         # get search word
         search_word = request.form.get("search")
 
@@ -111,11 +141,9 @@ def find_recipe():
         # search with the search word that came through the search bar
         query = mongo.db.recipes.find({"$text": {"$search": search_word}})
         recipe = [recipe for recipe in query]
-      
+
         # send recipes to page
         return render_template("recipes.html", recipes=recipe, query=search_word)
-
-    # return render_template("recipes.html")
 
 
 if __name__ == "__main__":
