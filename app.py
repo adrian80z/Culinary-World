@@ -25,6 +25,14 @@ def all_recipes():
     )
 
 
+app.route("/index")
+def index():
+     if 'username' in session:
+        return render_template('recipes.html', recipes = mongo.db.recipes.find())
+     else:
+        return render_template('login.html')
+
+
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
