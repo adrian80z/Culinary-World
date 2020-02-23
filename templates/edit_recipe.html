@@ -78,7 +78,8 @@
                 <div class="input-field col s12" id="items">
                     <i class="material-icons prefix">shopping_basket</i>
                     {% for ingredient in recipes.ingredients %}
-                    <input type="text" name="ingredients" id="ingredients" class="validate" value=" {{ ingredient }} " required >
+                    <input type="text" name="ingredients" id="ingredients" class="validate" value=" {{ ingredient }} "
+                        required>
                     {% endfor %}
                     <a class="waves-effect waves-light btn-small add-input-field">Add item</a>
                     <a class="waves-effect waves-light btn-small delete-last-field">Delete Last</a>
@@ -103,7 +104,8 @@
                 <button class="btn waves-effect waves-light" type="submit">Update Recipe
                     <i class="material-icons right">playlist_add</i>
                 </button>
-                <a href="{{ url_for('recipe_details', recipe_id=recipe_id ) }}" class="btn waves-effect waves-light">Cancel</a>
+                <a href="{{ url_for('recipe_details', recipe_id=recipe_id ) }}"
+                    class="btn waves-effect waves-light">Cancel</a>
             </div>
         </div>
     </form>
