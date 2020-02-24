@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lavender;
+}
+
+nav .nav-wrapper {
+    background-color: firebrick;
+}
+
+.row .col { 
+    padding: 0 16px
+}
+
+/* login, registration form */
+.center-form {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -45%);
+    transform: translate(-50%, -45%);
+}
+
+form {
+    background-color: white;
+    padding: 1px 20px 40px;
+    box-shadow: 2px 2px 5px dimgrey;
+}
+
+.center-form h4 {
+    background: darkcyan;
+    padding: 18px 25px;
+    color: white;
+    box-shadow: 2px 2px 5px dimgrey;
+    margin-bottom: 0;
+}
+
+.login-btn-align {
+    margin-left: 10px;
+}
+
+.register-link {
+    font-size: 12px;
+}
+
+/* homepage */
+
+.indicators {
+    display: none;
+}
+
+.card-content {
+    background-color: wheat;
+}
+
+.card .card-action {
+    background-color: firebrick;
+}
+
+/* recipe details */
+.image-top {
+    margin-top: 60px;
+}
+
+/* footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: red;
+    height: 100px;
+    width: 100%;
+} */
