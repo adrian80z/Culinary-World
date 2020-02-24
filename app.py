@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template, url_for, request, redirect, flash, session
+from flask import Flask, render_template, url_for, request, redirect, flash, session, g
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import bcrypt
+from functools import wraps
 
 from os import path
 
@@ -16,6 +17,16 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# middleware for login required 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("username") is None:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
@@ -67,16 +78,15 @@ def login():
         users = mongo.db.users
         login_user = users.find_one({"name": request.form.get("username")})
 
-    if login_user:
-        if (
-            bcrypt.hashpw(request.form["pass"].encode("utf-8"), login_user["password"])
-            == login_user["password"]
-        ):
-            session["username"] = request.form["username"]
-            return redirect(url_for("all_recipes"))
+        if login_user:
+            if (
+                bcrypt.hashpw(request.form["pass"].encode("utf-8"), login_user["password"])
+                == login_user["password"]
+            ):
+                session["username"] = request.form["username"]
+                return redirect(url_for("all_recipes"))
 
-    return "Invalid username/password combination"
-    # return render_template("login.html")
+    return render_template("login.html")
 
 
 @app.route("/logout")
@@ -87,6 +97,7 @@ def logout():
 
 
 @app.route("/add_recipe")
+@login_required
 def add_recipe():
     return render_template(
         "add_recipe.html", title="Add Recipe", cuisine_type=mongo.db.cuisine_type.find()
@@ -123,6 +134,7 @@ def recipe_details(recipe_id):
 
 
 @app.route("/edit_recipe/<recipe_id>")
+@login_required
 def edit_recipe(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisine_categories = mongo.db.cuisine_type.find()
