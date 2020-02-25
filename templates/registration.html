@@ -1,34 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row">
-    <div class="col s12 l4 offset-l4 ">
-        <h4>Registration</h4>
-        <form action="{{ url_for('register') }}" method=POST>
+<!-- registration form -->
+<div class="row center-form">
+    <div class="col s12 l10 offset-l1">
+        
+        <h4><i class="small material-icons prefix">assignment</i> Registration</h4>
+        <form action="{{ url_for('register') }}" method=POST class="data-box">
             <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
                 <input id="username" name="username" type="text" class="validate" required maxlength="15">
                 <label for="username">Username</label>
-            </div>
+            </div><!-- // input-field -->
             <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
                 <input id="email" name="email" type="email" class="validate" required>
                 <label for="email">Email</label>
-            </div>
+            </div><!-- // input-field -->
             <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
                 <input type="password" id="pass" name="pass" class="validate" required>
                 <label for="pass">Password</label>
-            </div>
+            </div><!-- // input-field -->
             <div class="row">
-                <button class="btn waves-effect waves-light" type="submit">Sign Up
-                    <i class="material-icons right">playlist_add</i>
-                </button>
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light login-btn-align" type="submit">Register</button>
+                </div>
             </div>
-
-        </form>
-
+        </form><!-- // form-->
     </div>
-</div>
+</div><!-- //center-form -->
 
 {% endblock %}
