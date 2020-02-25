@@ -4,8 +4,9 @@
 <div class="slider ">
     <ul class="slides">
         <li>
+            <div class="opacity-box">
             <img
-                src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="slider image">
+                src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="slider image"></div>
             <div class="caption center-align opacity-box">
                 <h3>Welcome to online Culinary World!</h3>
                 <h5 class="light grey-text text-lighten-3">Your best receipes in one place</h5>
@@ -59,10 +60,10 @@
                 </a>
             </div><!-- // card-image -->
             <div class="card-content">
-                <p><i class="material-icons prefix">location_on</i> Cuisine: {{ recipe.cuisine_name }}</p>
-                <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: {{ recipe.difficulty }}</p>
-                <p><i class="material-icons prefix">people</i> Serves: {{ recipe.serves }}</p>
-                <p><i class="material-icons prefix">access_time</i>Time: {{ recipe.prep_time }}</p>
+                <p><i class="material-icons prefix">location_on</i> Cuisine: <span class="bold-text"> {{ recipe.cuisine_name }}</span></p>
+                <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: <span class="bold-text"> {{ recipe.difficulty }}</span></p>
+                <p><i class="material-icons prefix">people</i> Serves: <span class="bold-text"> {{ recipe.serves }}</span></p>
+                <p><i class="material-icons prefix">access_time</i>Time: <span class="bold-text"> {{ recipe.prep_time }}</span></p>
             </div><!-- // card-content -->
             <div class="card-action">
                 <a href="/recipes/{{ recipe._id }}">View Recipe</a>
