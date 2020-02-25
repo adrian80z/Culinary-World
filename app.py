@@ -12,6 +12,7 @@ if path.exists("env.py"):
 
 app = Flask(__name__)
 
+#env variables
 app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -20,6 +21,7 @@ mongo = PyMongo(app)
 
 
 # middleware for login required 
+# https://medium.com/@devsudhi/how-to-create-a-middleware-in-flask-4e757041a6aa
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -41,9 +43,10 @@ def index():
     if "username" in session:
         return render_template("recipes.html", recipes=mongo.db.recipes.find())
     else:
-        return render_template("login.html")
+        return render_template("login.html", title="Login")
 
 
+#user registration
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
@@ -69,9 +72,10 @@ def register():
             return "That username already exists!"
         return "That email already exists!"
 
-    return render_template("registration.html")
+    return render_template("registration.html", title="Registration")
 
 
+#user login
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
@@ -86,9 +90,10 @@ def login():
                 session["username"] = request.form["username"]
                 return redirect(url_for("all_recipes"))
 
-    return render_template("login.html")
+    return render_template("login.html", title="Login")
 
 
+#user logout
 @app.route("/logout")
 def logout():
     # remove the username from the session
@@ -96,6 +101,7 @@ def logout():
     return redirect(url_for("all_recipes"))
 
 
+#add recipe
 @app.route("/add_recipe")
 @login_required
 def add_recipe():
@@ -104,6 +110,7 @@ def add_recipe():
     )
 
 
+#insert recipe
 @app.route("/insert_recipe", methods=["POST"])
 def insert_recipe():
     recipes = mongo.db.recipes
@@ -124,6 +131,7 @@ def insert_recipe():
     return redirect(url_for("all_recipes"))
 
 
+#display recipe using id
 @app.route("/recipes/<recipe_id>")
 def recipe_details(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -133,6 +141,7 @@ def recipe_details(recipe_id):
     )
 
 
+#edit recipe using id
 @app.route("/edit_recipe/<recipe_id>")
 @login_required
 def edit_recipe(recipe_id):
@@ -146,6 +155,7 @@ def edit_recipe(recipe_id):
     )
 
 
+#update recipe using id
 @app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
@@ -167,12 +177,14 @@ def update_recipe(recipe_id):
     return redirect(url_for("recipe_details", recipe_id=recipe_id))
 
 
+#delete recipe using id
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return redirect(url_for("all_recipes"))
 
 
+#search recipe 
 @app.route("/find_recipe", methods=["GET", "POST"])
 def find_recipe():
     if request.method == "POST":
@@ -187,7 +199,7 @@ def find_recipe():
         query = mongo.db.recipes.find({"$text": {"$search": search_word}})
         recipe = [recipe for recipe in query]
 
-        # send recipes to page
+        # send results to page
         return render_template("recipes.html", recipes=recipe, query=search_word)
 
 
