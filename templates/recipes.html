@@ -1,52 +1,54 @@
 {% extends 'base.html' %}
 {% block slider %}
-<div class="slider">
+
+<div class="slider ">
     <ul class="slides">
         <li>
             <img
-                src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260">
-            <!-- random image -->
-            <div class="caption center-align">
+                src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="slider image">
+            <div class="caption center-align opacity-box">
                 <h3>Welcome to online Culinary World!</h3>
                 <h5 class="light grey-text text-lighten-3">Your best receipes in one place</h5>
             </div>
         </li>
         <li>
-            <img src="https://www.thesun.co.uk/wp-content/uploads/2019/11/Nandos.jpg?strip=all&w=960">
-            <!-- random image -->
-            <div class="caption left-align">
+                <img src="https://www.thesun.co.uk/wp-content/uploads/2019/11/Nandos.jpg?strip=all&w=960" alt="slider image">
+            <div class="caption left-align opacity-box">
                 <h3>Easy Access</h3>
                 <h5 class="light grey-text text-lighten-3">Variety of receipes from all world</h5>
             </div>
         </li>
         <li>
-            <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
-            <div class="caption right-align">
+            <img src="https://lorempixel.com/580/250/nature/3" alt="slider image">
+            <div class="caption right-align opacity-box">
                 <h3>Simple Share</h3>
                 <h5 class="light grey-text text-lighten-3">Share your favourite recipe</h5>
             </div>
         </li>
     </ul>
-</div>
+</div><!-- // slider -->
+
 {% endblock %}
 {% block content %}
+
+<!-- search-bar -->
 <div class="row">
     <div class="col s12">
-        <div class="input-field col s12">
-            <form action="{{ url_for('find_recipe') }}" method="POST">
-                <div class="input-field search-bar">
-                    <i class="material-icons prefix">search</i>
-                    <input type="text" id="search" name="search" required>
-                    <label for="search">Search...</label>
-                    <div class="card-action">
-                        <button type="submit" class="btn btn-info">Search </button>
-                        <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light"><i
-                                class="material-icons right">sync</i>Reset</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+        <form action="{{ url_for('find_recipe') }}" method="POST" class="margin">
+            <div class="input-field search-bar">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="search" name="search" required>
+                <label for="search">Enter search term...</label>
+                <div class="card-action">
+                    <button type="submit" class="btn btn-info">Search </button>
+                    <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light"><i
+                            class="material-icons right">sync</i>Reset</a>
+                </div><!-- // card-action -->
+            </div><!-- // search-bar -->
+        </form><!-- // form -->
+    </div><!-- // col -->
+
+    <!-- looping throught recipes collection and display apropriate details -->
     {% for recipe in recipes %}
     <div class="col s12 m6 l4">
         <div class="card">
@@ -55,18 +57,18 @@
                     <img src="{{ recipe.image_url}}">
                     <span class="card-title">{{ recipe.recipe_name }}</span>
                 </a>
-            </div>
+            </div><!-- // card-image -->
             <div class="card-content">
                 <p><i class="material-icons prefix">location_on</i> Cuisine: {{ recipe.cuisine_name }}</p>
                 <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: {{ recipe.difficulty }}</p>
                 <p><i class="material-icons prefix">people</i> Serves: {{ recipe.serves }}</p>
                 <p><i class="material-icons prefix">access_time</i>Time: {{ recipe.prep_time }}</p>
-            </div>
+            </div><!-- // card-content -->
             <div class="card-action">
                 <a href="/recipes/{{ recipe._id }}">View Recipe</a>
-            </div>
-        </div>
-    </div>
+            </div><!-- // card-action -->
+        </div><!-- // card -->
+    </div><!-- // col-->
     {% endfor %}
-</div>
+</div><!-- // row -->
 {% endblock %}
