@@ -6,9 +6,12 @@ body {
 
 nav .nav-wrapper {
     background-color: firebrick;
+    padding: 0 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.row .col { 
+.center-form .row .col { 
     padding: 0 16px
 }
 
@@ -22,7 +25,7 @@ nav .nav-wrapper {
     transform: translate(-50%, -45%);
 }
 
-form {
+.data-box {
     background-color: white;
     padding: 1px 20px 40px;
     box-shadow: 2px 2px 5px dimgrey;
@@ -45,17 +48,62 @@ form {
 }
 
 /* homepage */
+.opacity-box {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+}
 
 .indicators {
     display: none;
 }
 
+.margin {
+    margin: 70px 0;
+}
+
+.card .card-image {
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.7);
+    width: 333px;
+    height: 185px;
+}
+
+.card .card-image img {
+    transform: scale(1.25);
+    transition: linear all .3s;
+    opacity: .5;
+    border-radius: none;
+}
+
+.card .card-image img:hover{
+    transform: scale(1);
+    transition: linear all .3s;
+    opacity: .7;
+}
+
+.card .card-image .card-title {
+    width: 100%;
+    padding: 10px 25px;
+    text-shadow: 2px 2px 2px black;
+    font-weight: 400;
+}
+
 .card-content {
-    background-color: wheat;
+    background-color: aliceblue;
+}
+
+.card .card-content p {
+    margin: 10px 0;
+    display: flex;
+    vertical-align: middle;
+}
+
+.material-icons {
+    padding-right: 10px;
 }
 
 .card .card-action {
-    background-color: firebrick;
+    background-color: darkslategray;
 }
 
 /* recipe details */
@@ -63,11 +111,10 @@ form {
     margin-top: 60px;
 }
 
-/* footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: red;
-    height: 100px;
+footer {
+    background: firebrick;
+    padding: 30px 30px;
     width: 100%;
-} */
+    margin-top: 60px;
+    color: white;
+}
