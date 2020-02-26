@@ -1,4 +1,5 @@
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: lavender;
@@ -17,13 +18,7 @@ nav .nav-wrapper {
 
 /* login, registration form */
 .center-form {
-    margin: 0;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    -ms-transform: translate(-50%, -45%);
-    transform: translate(-50%, -45%);
-    width: 100%;
+    margin-top: 60px;  
 }
 
 .data-box {
@@ -33,7 +28,7 @@ nav .nav-wrapper {
 }
 
 .center-form h4 {
-    background: darkcyan;
+    background: darkslategrey;
     padding: 18px 25px;
     color: white;
     box-shadow: 2px 2px 5px dimgrey;
@@ -138,8 +133,28 @@ nav .nav-wrapper {
 }
 
 .edit-info {
-    margin-top: 60px;
-   
+    margin-top: 50px;
+}
+
+.margin-r {
+    margin-right: 5px;
+}
+
+.delete {
+    background-color: #c62828;
+}
+
+.delete:hover {
+    background-color: #e53935;
+}
+
+.cancel {
+    background-color: #ffca28;
+    color: black;
+}
+
+.cancel:hover {
+    background-color: #ffd54f;
 }
 
 .user-note {
@@ -180,7 +195,7 @@ nav .nav-wrapper {
 }
 
 .table-border td {
-    padding-left: 25px;
+    padding: 10px 25px;
 }
 
 footer {
