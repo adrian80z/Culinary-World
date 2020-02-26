@@ -1,8 +1,13 @@
 $(document).ready(function () {
+
+    /* initialization */
     $('.slider').slider();
     $('select').formSelect();
     $('.modal').modal();
     $(".dropdown-trigger").dropdown();
+    $(".mobilie-menu").dropdown();
+    $('.sidenav').sidenav();
+});
 
     /* Dynamically add new input field to ingredients form*/
     $(".add-input-field").on("click", function () {
@@ -23,7 +28,7 @@ $(document).ready(function () {
     $(".delete-last-step").on("click", function () {
         $("#steps textarea:last").remove();
     });
-});
+
 
 
 /* page printing function */
