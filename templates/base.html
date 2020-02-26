@@ -28,19 +28,35 @@
         <nav class="navigation-bar">
             <div class="nav-wrapper">
                 <a href="{{ url_for('all_recipes') }}" class="brand-logo">Culinary World</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('all_recipes') }}">Recipes</a></li>
                     {% if 'username' in session %}
                     <li><a href="{{url_for('add_recipe')}}">Add Recipe</a></li>
                     <!-- Dropdown Trigger -->
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Hi, {{ session.username }}<i
-                        class="material-icons right">arrow_drop_down</i></a></li>
+                                class="material-icons right">arrow_drop_down</i></a></li>
                     {% else %}
                     <li><a class="modal-trigger" href="{{ url_for('index')}}">Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
+        <!-- Dropdown Structure -->
+        <ul id="dropdown-mobile" class="dropdown-content">
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{ url_for('all_recipes') }}">Recipes</a></li>
+            {% if 'username' in session %}
+            <li><a href="{{url_for('add_recipe')}}">Add Recipe</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown-mobile">Hi, {{ session.username }}<i
+                        class="material-icons right">arrow_drop_down</i></a></li>
+            {% else %}
+            <li><a class="modal-trigger" href="{{ url_for('index')}}">Log In</a></li>
+            {% endif %}
+        </ul>
     </header>
     {% block slider %} {% endblock %}
     <main class="container">
@@ -54,5 +70,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 </body>
-
 </html>
