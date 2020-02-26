@@ -1,96 +1,111 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3>Add Recipe Details:</h3>
 <div class="row">
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
-        <fieldset>
-            <legend>Recipe Details</legend>
+    <div class="col s12 l10 offset-l1">
+        <h1 class="main-title">Add Recipe Details:</h1>
+        <form action="{{ url_for('insert_recipe') }}" method="POST" class="add-form">
+            <fieldset>
+                <legend>Recipe Details</legend>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">create</i>
+                        <input id="recipe_name" name="recipe_name" type="text" class="validate" maxlength="40">
+                        <label for="recipe_name">Recipe Name</label>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">location_on</i>
+                        <select id="category" name="cuisine_name" required>
+                            <option value="" disabled selected>Choose Cuisine</option>
+                            {% for type in cuisine_type %}
+                            <option value="{{ type.c_type }}">{{ type.c_type }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">restaurant_menu</i>
+                        <select id="category" name="difficulty" required>
+                            <option value="" disabled selected>Choose Difficulty</option>
+                            {% for difficult in level %}
+                            <option value="{{ difficult.d_level }}">{{ difficult.d_level }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">people</i>
+                        <input id="serves" name="serves" type="number" class="validate" min="1">
+                        <label for="serves">Serves</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">access_time</i>
+                        <input id="prep_time" name="prep_time" type="text" class="validate" maxlength=10>
+                        <label for="prep_time">Preparation Time</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">person</i>
+                        <input id="author" name="author" type="text" class="validate" maxlength="30">
+                        <label for="author">Author</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">add_a_photo</i>
+                        <input id="image_url" name="image_url" type="url" class="validate" required>
+                        <label for="image_url">Image URL</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">assignment</i>
+                        <textarea name="description" id="description" class="materialize-textarea" required
+                            maxlength="500"></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Ingredients</legend>
+                <div class="row">
+                    <div class="input-field col s12" id="items">
+                        <i class="material-icons prefix">shopping_basket</i>
+                        <input name="ingredients" id="ingredients" class="validate" placeholder="Add ingredient"
+                            required maxlength="60">
+                        <a class="waves-effect waves-light btn-small add-input-field margin-r">Add item</a>
+                        <a class="waves-effect waves-light btn-small delete-last-field delete">Delete Last</a>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Preparation Steps</legend>
+                <div class="row">
+                    <div class="input-field col s12" id="steps">
+                        <i class="material-icons prefix">list</i>
+                        <textarea name="method" id="method" class="materialize-textarea" placeholder="Add step" required
+                            maxlength="300"></textarea>
+                        <a class="waves-effect waves-light btn-small add-step margin-r">Add Step</a>
+                        <a class="waves-effect waves-light btn-small delete-last-step delete">Delete Last</a>
+                    </div>
+                </div>
+            </fieldset>
             <div class="row">
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">create</i>
-                    <input id="recipe_name" name="recipe_name" type="text" class="validate">
-                    <label for="recipe_name">Recipe Name</label>
-                </div>
-
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">location_on</i>
-                    <select id="category" name="cuisine_name" required>
-                        <option value="" disabled selected>Choose Cuisine</option>
-                        {% for type in cuisine_type %}
-                        <option value="{{ type.c_type }}">{{ type.c_type }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">restaurant_menu</i>
-                    <select id="difficulty" name="difficulty" required>
-                        <option value="" disabled selected>Choose Difficulty</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option>
-                    </select>
-                </div>
-
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">people</i>
-                    <input id="serves" name="serves" type="text" class="validate">
-                    <label for="serves">Serves</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">access_time</i>
-                    <input id="prep_time" name="prep_time" type="text" class="validate">
-                    <label for="prep_time">Preparation Time</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">person</i>
-                    <input id="author" name="author" type="text" class="validate">
-                    <label for="author">Author</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">add_a_photo</i>
-                    <input id="image_url" name="image_url" type="text" class="validate">
-                    <label for="image_url">Image URL</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">assignment</i>
-                    <textarea name="description" id="description" class="materialize-textarea" required></textarea>
-                    <label for="description">Description</label>
+                <div class="col s12">
+                    <button class="btn waves-effect waves-light margin-r" type="submit">Add Recipe
+                        <i class="material-icons left">playlist_add</i>
+                    </button>
+                    <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light cancel">Cancel<i
+                            class="material-icons left">cancel</i></a>
                 </div>
             </div>
-        </fieldset>
-        <fieldset>
-            <legend>Ingredients</legend>
-            <div class="row" >
-                <div class="input-field col s12" id="items">
-                    <i class="material-icons prefix">shopping_basket</i>
-                    <input name="ingredients" id="ingredients" class="validate" required>
-                    <a class="waves-effect waves-light btn-small add-input-field">Add item</a>
-					<a class="waves-effect waves-light btn-small delete-last-field">Delete Last</a>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Preparation Steps</legend>
-            <div class="row">
-                <div class="input-field col s12" id="steps">
-                    <i class="material-icons prefix">list</i>
-                    <textarea name="method" id="method" class="materialize-textarea" required></textarea>
-                    <a class="waves-effect waves-light btn-small add-step">Add Step</a>
-					<a class="waves-effect waves-light btn-small delete-last-step">Delete Last</a>
-                </div>
-            </div>
-        </fieldset>
-        <div class="row">
-            <div class="col s12">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
-                    <i class="material-icons right">playlist_add</i>
-                </button>
-                <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light">Cancel</a>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
+
+{% endblock %}
+{% block footer %}
+
+<footer>
+    <p>Culinary World &copy; 2020</p>
+</footer>
+
 {% endblock %}
