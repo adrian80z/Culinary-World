@@ -10,6 +10,10 @@ nav .nav-wrapper {
     padding: 0 30px;
 }
 
+i.left {
+    margin-right: 0;
+}
+
 .center-form .row .col { 
     padding: 0 16px
 }
@@ -52,16 +56,33 @@ fieldset {
 }
 
 /* homepage */
-.opacity-box {
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+.site-header {
+background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+height: 50vh;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
 }
 
-.indicators {
-    display: none;
+.landing-text-box {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    transform: translate(-25%, -25%);
+    color: #fff;
+    min-width: 300px;
+    text-align: center;
 }
 
-.margin {
-    margin: 70px 0;
+.hero-line-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero-line-subtitle {
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .card .card-image {
@@ -222,6 +243,12 @@ h3 {
     box-shadow: 2px 2px 5px dimgrey;
 }
 
+
+/* edit recipe */
+#items input, #steps textarea {
+    margin-left: 45px;
+    width: calc(100% - 45px);
+}
 
 
 footer {
