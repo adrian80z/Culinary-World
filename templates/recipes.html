@@ -1,33 +1,10 @@
 {% extends 'base.html' %}
-{% block slider %}
+{% block hero %}
 
-<div class="slider ">
-    <ul class="slides">
-        <li>
-            <div class="opacity-box">
-            <img
-                src="https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="slider image"></div>
-            <div class="caption center-align opacity-box">
-                <h3>Welcome to online Culinary World!</h3>
-                <h5 class="light grey-text text-lighten-3">Your best receipes in one place</h5>
-            </div>
-        </li>
-        <li>
-                <img src="https://www.thesun.co.uk/wp-content/uploads/2019/11/Nandos.jpg?strip=all&w=960" alt="slider image">
-            <div class="caption left-align opacity-box">
-                <h3>Easy Access</h3>
-                <h5 class="light grey-text text-lighten-3">Variety of receipes from all world</h5>
-            </div>
-        </li>
-        <li>
-            <img src="https://lorempixel.com/580/250/nature/3" alt="slider image">
-            <div class="caption right-align opacity-box">
-                <h3>Simple Share</h3>
-                <h5 class="light grey-text text-lighten-3">Share your favourite recipe</h5>
-            </div>
-        </li>
-    </ul>
-</div><!-- // slider -->
+    <div class="landing-text-box">
+        <p class="hero-line-title">Welcome to Culinary World</p>
+        <p class="hero-line-subtitle">Best Recipes in one place</p> 
+    </div>
 
 {% endblock %}
 {% block content %}
@@ -60,10 +37,14 @@
                 </a>
             </div><!-- // card-image -->
             <div class="card-content">
-                <p><i class="material-icons prefix">location_on</i> Cuisine: <span class="bold-text"> {{ recipe.cuisine_name }}</span></p>
-                <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: <span class="bold-text"> {{ recipe.difficulty }}</span></p>
-                <p><i class="material-icons prefix">people</i> Serves: <span class="bold-text"> {{ recipe.serves }}</span></p>
-                <p><i class="material-icons prefix">access_time</i>Time: <span class="bold-text"> {{ recipe.prep_time }}</span></p>
+                <p><i class="material-icons prefix">location_on</i> Cuisine: <span class="bold-text">
+                        {{ recipe.cuisine_name }}</span></p>
+                <p><i class="material-icons prefix">restaurant_menu</i> Difficulty: <span class="bold-text">
+                        {{ recipe.difficulty }}</span></p>
+                <p><i class="material-icons prefix">people</i> Serves: <span class="bold-text">
+                        {{ recipe.serves }}</span></p>
+                <p><i class="material-icons prefix">access_time</i>Time: <span class="bold-text">
+                        {{ recipe.prep_time }}</span></p>
             </div><!-- // card-content -->
             <div class="card-action">
                 <a href="/recipes/{{ recipe._id }}">View Recipe</a>
