@@ -8,12 +8,20 @@ body {
 nav .nav-wrapper {
     background-color: firebrick;
     padding: 0 30px;
-    font-weight: bold;
-    letter-spacing: 1px;
 }
 
 .center-form .row .col { 
     padding: 0 16px
+}
+
+.main-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 70px;
+}
+
+fieldset {
+    margin: 0 0 25px 0;
 }
 
 /* login, registration form */
@@ -197,6 +205,24 @@ nav .nav-wrapper {
 .table-border td {
     padding: 10px 25px;
 }
+
+.modal-content h3 {
+    color: #c62828;
+}
+
+
+/*add recipe */
+h3 {
+    font-size: 1.8em;
+}
+
+.add-form {
+    background: aliceblue;
+    padding: 20px;
+    box-shadow: 2px 2px 5px dimgrey;
+}
+
+
 
 footer {
     background: firebrick;
