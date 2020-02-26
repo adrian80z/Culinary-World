@@ -14,12 +14,12 @@
         <table class="icon-summary">
             <tbody>
                 <tr>
-                    <td><i class="material-icons prefix">location_on</i> Cuisine: {{ recipes.cuisine_name }}</td>
-                    <td><i class="material-icons prefix">restaurant_menu</i> Difficulty: {{ recipes.difficulty}} </td>
+                    <td><i class="material-icons prefix">location_on</i> Cuisine:<span class="bold-text"> {{ recipes.cuisine_name }}</span></td>
+                    <td><i class="material-icons prefix">restaurant_menu</i> Difficulty:<span class="bold-text"> {{ recipes.difficulty}} </span></td>
                 </tr>
                 <tr>
-                    <td><i class="material-icons prefix">access_time</i> Time: {{ recipes.prep_time }} </td>
-                    <td><i class="material-icons prefix">people</i> Serve: {{ recipes.serves }}</td>
+                    <td><i class="material-icons prefix">access_time</i> Time:<span class="bold-text"> {{ recipes.prep_time }} </span></td>
+                    <td><i class="material-icons prefix">people</i> Serve:<span class="bold-text"> {{ recipes.serves }}</span></td>
                 </tr>
             </tbody>
         </table>
@@ -27,8 +27,8 @@
             <div class="col s12 edit-info">
                 {% if 'username' in session %}
                 <a href="{{ url_for('edit_recipe', recipe_id = recipes._id) }}"
-                    class="waves-effect waves-light btn">Edit</a>
-                <a href="#modal_confirm" class="waves-effect waves-light btn modal-trigger">Delete</a>
+                    class="waves-effect waves-light btn margin-r"><i class="material-icons left">edit</i>Edit</a>
+                <a href="#modal_confirm" class="waves-effect waves-light btn modal-trigger margin-r delete"><i class="material-icons left">delete_forever</i>Delete</a>
                 {% else %}
                 <div class="col s12 user-note">
                     <p>Please <a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to edit or delete recipe</p>
@@ -42,10 +42,10 @@
                     </div>
                     <div class="modal-footer">
                         <a href="{{ url_for('delete_recipe', recipe_id = recipes._id) }}"
-                            class="modal-close waves-effect waves-green btn-flat">Delete<i
-                                class="material-icons right">delete_forever</i></a>
-                        <a href="#!" class="waves-effect waves-light btn-small modal-close">Cancel
-                            <i class="material-icons right">cancel</i></a>
+                            class="waves-effect waves-light btn-small delete">Delete<i
+                                class="material-icons left">delete_forever</i></a>
+                        <a href="#!" class="waves-effect waves-light btn-small modal-close cancel">Cancel
+                            <i class="material-icons left">cancel</i></a>
                     </div>
                 </div>
             </div>
@@ -79,5 +79,12 @@
         </div><!-- // col m7-->
     </div><!-- // col m5-->
 </div><!-- // row-->
+
+{% endblock %}
+{% block footer %}
+
+<footer>
+    <p>Culinary World &copy; 2020</p>
+</footer>
 
 {% endblock %}
