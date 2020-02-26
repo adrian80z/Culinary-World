@@ -33,13 +33,13 @@
                     <i class="material-icons prefix">restaurant_menu</i>
                     <select id="difficulty" name="difficulty" required>
                         <option value="" disabled selected>Choose Difficulty</option>
-                        <!-- {% if difficulty == recipes.difficulty %} -->
+                        {% if difficulty == recipes.difficulty %}
                         <option value="{{ recipes.difficulty }}" selected>{{recipes.difficulty}}</option>
-                        <!-- {% else %} -->
-                        <!-- <option value="Easy">Easy</option>
+                        {% else %} 
+                        <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
-                        <option value="Hard">Hard</option> -->
-                        <!-- {% endif %} -->
+                        <option value="Hard">Hard</option>
+                        {% endif %}
 
                     </select>
                 </div>
@@ -110,5 +110,12 @@
         </div>
     </form>
 </div>
+
+{% endblock %}
+{% block footer %}
+
+<footer>
+    <p>Culinary World &copy; 2020</p>
+</footer>
 
 {% endblock %}
