@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col s12 l10 offset-l1">
-        <h1 class="main-title">Add Recipe Details:</h1>
+        <h1 class="main-title">Add Recipe Details</h1>
         <form action="{{ url_for('insert_recipe') }}" method="POST" class="add-form">
             <fieldset>
                 <legend>Recipe Details</legend>
@@ -67,24 +67,27 @@
             <fieldset>
                 <legend>Ingredients</legend>
                 <div class="row">
-                    <div class="input-field col s12" id="items">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">shopping_basket</i>
-                        <input name="ingredients" id="ingredients" class="validate" placeholder="Add ingredient"
-                            required maxlength="60">
-                        <a class="waves-effect waves-light btn-small add-input-field margin-r">Add item</a>
-                        <a class="waves-effect waves-light btn-small delete-last-field delete">Delete Last</a>
+                        <input name="ingredients" class="validate" placeholder="Add ingredient" required maxlength="60">
+                        <div id="items">
+                            <a class="waves-effect waves-light btn-small add-input-field margin-r">Add item</a>
+                            <a class="waves-effect waves-light btn-small delete-last-field delete">Delete Last</a>
+                        </div>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Preparation Steps</legend>
                 <div class="row">
-                    <div class="input-field col s12" id="steps">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix">list</i>
-                        <textarea name="method" id="method" class="materialize-textarea" placeholder="Add step" required
+                        <textarea name="method" class="materialize-textarea" placeholder="Add step" required
                             maxlength="300"></textarea>
-                        <a class="waves-effect waves-light btn-small add-step margin-r">Add Step</a>
-                        <a class="waves-effect waves-light btn-small delete-last-step delete">Delete Last</a>
+                        <div id="steps">
+                            <a class="waves-effect waves-light btn-small add-step margin-r">Add Step</a>
+                            <a class="waves-effect waves-light btn-small delete-last-step delete">Delete Last</a>
+                        </div>
                     </div>
                 </div>
             </fieldset>
