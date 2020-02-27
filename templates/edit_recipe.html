@@ -34,13 +34,13 @@
                     <i class="material-icons prefix">restaurant_menu</i>
                     <select id="type" name="difficulty" required>
                         <option value="" disabled selected>Choose Difficulty</option>
-                        {% for difficult in level %}
+                        {% for difficult in levels %}
                         {% if difficult.d_level == recipes.difficulty %}
-                        <option value="{{ difficult.d_level }}" select>{{ difficult.d_level }}
+                        <option value="{{ difficult.d_level }}" selected>{{ difficult.d_level }}
                         </option>
                         {% else %}
                         <option value="{{ difficult.d_level }}">{{ difficult.d_level }}
-                            {% endif %}
+                        {% endif %}
                         {% endfor %}
                     </select>
                 </div>
