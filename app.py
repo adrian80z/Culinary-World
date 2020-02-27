@@ -201,10 +201,11 @@ def find_recipe():
 
         # search with the search word that came through the search bar
         query = mongo.db.recipes.find({"$text": {"$search": search_word}})
+        recipes_counter = query.count()
         recipe = [recipe for recipe in query]
 
         # send results to page
-        return render_template("recipes.html", recipes=recipe, query=search_word)
+        return render_template("results.html", recipes=recipe, query=search_word, total = recipes_counter)
 
 
 if __name__ == "__main__":
