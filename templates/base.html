@@ -9,7 +9,8 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-
+    <!-- Google fonts cdn -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% if title %}
@@ -22,8 +23,8 @@
 <body>
     <header class="site-header">
         <!-- Dropdown Structure -->
-        <ul id="dropdown" class="dropdown-content">
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <ul id="dropdown" class="dropdown-content logout-style">
+            <li class="top"><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
         <nav class="navigation-bar">
             <div class="nav-wrapper">
@@ -31,6 +32,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('all_recipes') }}">Recipes</a></li>
+                    <!-- display menu items depending whether user is logged in or not -->
                     {% if 'username' in session %}
                     <li><a href="{{url_for('add_recipe')}}">Add Recipe</a></li>
                     <!-- Dropdown Trigger -->
@@ -40,7 +42,7 @@
                     <li><a class="modal-trigger" href="{{ url_for('index')}}">Log In</a></li>
                     {% endif %}
                 </ul>
-            </div>
+            </div><!-- // nav-wrapper-->
         </nav>
         <!-- Dropdown Structure -->
         <ul id="dropdown-mobile" class="dropdown-content">
@@ -58,11 +60,12 @@
             {% endif %}
         </ul>
     </header>
-    {% block slider %} {% endblock %}
+    {% block hero %} {% endblock %}
     <main class="container">
         {% block content %}{% endblock %}
     </main>
     {% block footer %} {% endblock %}
+    <a id="backTop" title="Back to top" href="#">&#10148;</a>
     <!-- Import jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -70,4 +73,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
 </body>
+
 </html>
