@@ -47,28 +47,28 @@
 
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">people</i>
-                    <input id="serves" name="serves" type="text" class="validate" value="{{ recipes.serves }}">
+                    <input id="serves" name="serves" type="text" required class="validate" value="{{ recipes.serves }}">
                     <label for="serves">Serves</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">access_time</i>
-                    <input id="prep_time" name="prep_time" type="text" class="validate" value="{{ recipes.prep_time }}">
+                    <input id="prep_time" name="prep_time" type="text" required class="validate" value="{{ recipes.prep_time }}">
                     <label for="prep_time">Preparation Time</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">person</i>
-                    <input id="author" name="author" type="text" class="validate" value="{{ recipes.author }}">
+                    <input id="author" name="author" type="text" required class="validate" value="{{ recipes.author }}">
                     <label for="author">Author</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">add_a_photo</i>
-                    <input id="image_url" name="image_url" type="url" class="validate" value="{{recipes.image_url }}">
+                    <input id="image_url" name="image_url" type="url" required class="validate" value="{{recipes.image_url }}">
                     <label for="image_url">Image URL</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">assignment</i>
                     <textarea id="description" name="description"
-                        class="materialize-textarea"> {{ recipes.description }}</textarea>
+                        class="materialize-textarea" required maxlength="300"> {{ recipes.description }}</textarea>
                     <label for="description">Description</label>
                 </div>
             </div>
@@ -80,14 +80,12 @@
                     <i class="material-icons prefix">shopping_basket</i>
                     {% for ingredient in recipes.ingredients %}
                     
-                    <input type="text" name="ingredients" class="validate" value=" {{ ingredient }} "
+                    <input type="text" name="ingredients" required maxlength="60" class="validate" value=" {{ ingredient }} "
                         required>
                     {% endfor %}
-                    <div id="items">
-                        
+                    <div id="items">    
                     <a class="waves-effect waves-light btn-small add-input-field margin-r">Add item</a>
                     <a class="waves-effect waves-light btn-small delete-last-field delete">Delete Last</a>
-                
                 </div>
             </div>
             </div>
@@ -98,7 +96,7 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">list</i>
                     {% for step in recipes.method %}
-                    <textarea name="method" class="materialize-textarea" required>{{ step }}</textarea>
+                    <textarea name="method" class="materialize-textarea" maxlength="150" required>{{ step }}</textarea>
                     {% endfor %}
                     <div id="steps">
                     <a class="waves-effect waves-light btn-small add-step margin-r">Add item</a>
