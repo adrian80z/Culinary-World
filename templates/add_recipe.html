@@ -27,9 +27,9 @@
 
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">restaurant_menu</i>
-                        <select id="category" name="difficulty" required>
+                        <select id="type" name="difficulty" required>
                             <option value="" disabled selected>Choose Difficulty</option>
-                            {% for difficult in level %}
+                            {% for difficult in levels %}
                             <option value="{{ difficult.d_level }}">{{ difficult.d_level }}
                             </option>
                             {% endfor %}
