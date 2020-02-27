@@ -35,7 +35,8 @@ function printRecipe() {
     window.print();
 }
 
-/* back to top function */
+
+/* button back to top function */
 $(window).scroll(function() {
     var height = $(window).scrollTop();
     if (height > 350) {
@@ -45,6 +46,7 @@ $(window).scroll(function() {
     }
 });
 
+/* animate to top scrolling */
 $(document).ready(function() {
     $("#backTop").click(function(event) {
         event.preventDefault();
