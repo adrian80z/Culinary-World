@@ -1,8 +1,14 @@
+/* general styling */
 body {
     height: 100%;
     margin: 0;
     padding: 0;
     background-color: lavender;
+    font-family: 'Lato', Arial, sans-serif;
+}
+
+main {
+    min-height: 300px;
 }
 
 nav .nav-wrapper {
@@ -10,11 +16,42 @@ nav .nav-wrapper {
     padding: 0 30px;
 }
 
+.sidenav {
+    background-color: firebrick;
+}
+
+.sidenav li>a {
+    color: white;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 35px;
+}
+
+.dropdown-content li>a {
+    color: #26a69a;
+}
+
+nav .brand-logo {
+    font-size: 1.8rem
+}
+
+.top {
+    padding-top: 7px;
+}
+
+.logout-style {
+    height: 64px;
+}
+
+
 i.left {
     margin-right: 0;
 }
 
-.center-form .row .col { 
+.center-form .row .col {
     padding: 0 16px
 }
 
@@ -28,9 +65,32 @@ fieldset {
     margin: 0 0 25px 0;
 }
 
+#backTop {
+    width: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+    transform: rotate(270deg);
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    background-color: #DDD;
+    color: #555;
+    text-align: center;
+    font-size: 35px;
+    transition: .2s linear all; 
+}
+
+#backTop:hover {
+    background-color: #DDF;
+    color: #000;
+}
+
 /* login, registration form */
 .center-form {
-    margin-top: 60px;  
+    margin-top: 60px;
 }
 
 .data-box {
@@ -56,26 +116,26 @@ fieldset {
 }
 
 /* homepage */
-.site-header {
-background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
-height: 50vh;
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
+.hero-part {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .landing-text-box {
     position: absolute;
-    top: 25%;
-    left: 25%;
-    transform: translate(-25%, -25%);
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: #fff;
     min-width: 300px;
     text-align: center;
 }
 
 .hero-line-title {
-    font-size: 1.3em;
+    font-size: 2.5em;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -83,12 +143,19 @@ background-attachment: fixed;
 .hero-line-subtitle {
     font-weight: bold;
     letter-spacing: 1px;
+    font-size: 20px;
+    color: lightgray;
+    margin-top: -25px;
+}
+
+.margin {
+    margin: 100px 0 50px 0;
 }
 
 .card .card-image {
     overflow: hidden;
     background: #000;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.7);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.7);
     max-height: 170px;
 }
 
@@ -99,7 +166,7 @@ background-attachment: fixed;
     border-radius: none;
 }
 
-.card .card-image img:hover{
+.card .card-image img:hover {
     transform: scale(1);
     transition: linear all .3s;
     opacity: .9;
@@ -245,7 +312,8 @@ h3 {
 
 
 /* edit recipe */
-#items input, #steps textarea {
+#items input,
+#steps textarea {
     margin-left: 45px;
     width: calc(100% - 45px);
 }
@@ -257,4 +325,5 @@ footer {
     width: 100%;
     margin-top: 60px;
     color: white;
+    text-align: center;
 }
