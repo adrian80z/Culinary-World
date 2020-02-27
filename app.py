@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for, request, redirect, flash, session, g
+from flask import Flask, render_template, url_for, request, redirect, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from flask_bcrypt import bcrypt
@@ -69,9 +69,8 @@ def register():
                 session["username"] = request.form["username"]
                 return redirect(url_for("index"))
 
-            return "That username already exists!"
-        return "That email already exists!"
-
+            return render_template("registration.html", title="Registration")
+        return render_template("registration.html", title="Registration")
     return render_template("registration.html", title="Registration")
 
 
@@ -106,7 +105,7 @@ def logout():
 @login_required
 def add_recipe():
     return render_template(
-        "add_recipe.html", title="Add Recipe", cuisine_type=mongo.db.cuisine_type.find()
+        "add_recipe.html", title="Add Recipe", cuisine_type=mongo.db.cuisine_type.find(), levels = mongo.db.level.find()
     )
 
 
@@ -128,6 +127,7 @@ def insert_recipe():
             "method": request.form.getlist("method"),
         }
     )
+    flash("Recipe sucessfuly added")
     return redirect(url_for("all_recipes"))
 
 
@@ -147,11 +147,13 @@ def recipe_details(recipe_id):
 def edit_recipe(recipe_id):
     recipe_details = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisine_categories = mongo.db.cuisine_type.find()
+    difficulty_level = mongo.db.level.find()
     return render_template(
         "edit_recipe.html",
         recipes=recipe_details,
         cuisine_type=cuisine_categories,
         recipe_id=recipe_id,
+        levels=difficulty_level
     )
 
 
@@ -174,6 +176,7 @@ def update_recipe(recipe_id):
             "method": request.form.getlist("method"),
         },
     )
+    flash("Recipe sucessfuly updated")
     return redirect(url_for("recipe_details", recipe_id=recipe_id))
 
 
@@ -181,6 +184,7 @@ def update_recipe(recipe_id):
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe sucessfuly deleted")
     return redirect(url_for("all_recipes"))
 
 
