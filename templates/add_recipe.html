@@ -12,7 +12,7 @@
                         <i class="material-icons prefix">create</i>
                         <input id="recipe_name" name="recipe_name" type="text" class="validate" required maxlength="40">
                         <label for="recipe_name">Recipe Name</label>
-                    </div>
+                    </div><!-- // input-field -->
 
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">location_on</i>
@@ -23,7 +23,7 @@
                             </option>
                             {% endfor %}
                         </select>
-                    </div>
+                    </div><!-- // input-field -->
 
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">restaurant_menu</i>
@@ -34,36 +34,36 @@
                             </option>
                             {% endfor %}
                         </select>
-                    </div>
+                    </div><!-- // input-field -->
 
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">people</i>
                         <input id="serves" name="serves" type="number" required class="validate" min="1">
                         <label for="serves">Serves</label>
-                    </div>
+                    </div><!-- // input-field -->
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">access_time</i>
                         <input id="prep_time" name="prep_time" type="text" required class="validate" maxlength=10>
                         <label for="prep_time">Preparation Time</label>
-                    </div>
+                    </div><!-- // input-field -->
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">person</i>
                         <input id="author" name="author" type="text" requiredclass="validate" maxlength="30">
                         <label for="author">Author</label>
-                    </div>
+                    </div><!-- // input-field -->
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">add_a_photo</i>
                         <input id="image_url" name="image_url" type="url" class="validate" required>
                         <label for="image_url">Image URL</label>
-                    </div>
+                    </div><!-- // input-field -->
                     <div class="input-field col s12 m6">
                         <i class="material-icons prefix">assignment</i>
                         <textarea name="description" id="description" class="materialize-textarea" required
                             maxlength="500"></textarea>
                         <label for="description">Description</label>
-                    </div>
-                </div>
-            </fieldset>
+                    </div><!-- // input-field -->
+                </div><!-- // row -->
+            </fieldset><!-- // fieldset -->
             <fieldset>
                 <legend>Ingredients</legend>
                 <div class="row">
@@ -74,9 +74,9 @@
                             <a class="waves-effect waves-light btn-small add-input-field margin-r">Add item</a>
                             <a class="waves-effect waves-light btn-small delete-last-field delete">Delete Last</a>
                         </div>
-                    </div>
-                </div>
-            </fieldset>
+                    </div><!-- // input-field -->
+                </div><!-- // row -->
+            </fieldset><!-- // fieldset-->
             <fieldset>
                 <legend>Preparation Steps</legend>
                 <div class="row">
@@ -88,9 +88,9 @@
                             <a class="waves-effect waves-light btn-small add-step margin-r">Add Step</a>
                             <a class="waves-effect waves-light btn-small delete-last-step delete">Delete Last</a>
                         </div>
-                    </div>
-                </div>
-            </fieldset>
+                    </div><!-- // input-field -->
+                </div><!-- // row -->
+            </fieldset><!-- // fieldset-->
             <div class="row">
                 <div class="col s12">
                     <button class="btn waves-effect waves-light margin-r" type="submit">Add Recipe
@@ -98,11 +98,11 @@
                     </button>
                     <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light cancel">Cancel<i
                             class="material-icons left">cancel</i></a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                </div><!-- // col -->
+            </div><!-- // row -->
+        </form><!-- // form -->
+    </div><!-- // col l10 offset-l1 -->
+</div><!-- // row -->
 
 {% endblock %}
 {% block footer %}
