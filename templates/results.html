@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% if total == 0 %}
+<!-- If no results display message -->
+<h4>Sorry but there is nothing found when searching for {{ query }}.</h4>
+<div class="col s12">
+    <form action="{{ url_for('find_recipe') }}" method="POST" class="margin">
+        <div class="input-field search-bar">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="search" name="search" required>
+            <label for="search">Enter search term...</label>
+            <div class="card-action">
+                <button type="submit" class="btn btn-info">Search </button>
+                <a href="{{ url_for('all_recipes') }}" class="btn waves-effect waves-light"><i
+                        class="material-icons right">sync</i>Reset</a>
+            </div><!-- // card-action -->
+        </div><!-- // search-bar -->
+    </form><!-- // form -->
+</div><!-- // col -->
 
-
-
+{% endif %}
 {% endblock %}
 {% block footer %}
 
