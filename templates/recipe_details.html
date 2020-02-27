@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% block content  %}
 
+<!-- flash message -->
+<div class="row">
+    <div class="col s12">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <h6 class="alert">{{ message }}</h6>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+</div><!--// row-->
 <div class="row recipe-details">
     <div class="col s12 l6 image-top">
-        <img src="{{ recipes.image_url }}">
+        <img src="{{ recipes.image_url }}" alt="{{ recipes.recipe_name }} photo">
         <div class="col s12 print">
             <button class="btn waves-effect waves-light print" onclick="printRecipe()">Print Recipe</button>
         </div><!-- // col l5-->
@@ -14,48 +26,54 @@
         <table class="icon-summary">
             <tbody>
                 <tr>
-                    <td><i class="material-icons prefix">location_on</i> Cuisine:<span class="bold-text"> {{ recipes.cuisine_name }}</span></td>
-                    <td><i class="material-icons prefix">restaurant_menu</i> Difficulty:<span class="bold-text"> {{ recipes.difficulty}} </span></td>
+                    <td><i class="material-icons prefix">location_on</i> Cuisine:<span class="bold-text">
+                            {{ recipes.cuisine_name }}</span></td>
+                    <td><i class="material-icons prefix">restaurant_menu</i> Difficulty:<span class="bold-text">
+                            {{ recipes.difficulty}} </span></td>
                 </tr>
                 <tr>
-                    <td><i class="material-icons prefix">access_time</i> Time:<span class="bold-text"> {{ recipes.prep_time }} </span></td>
-                    <td><i class="material-icons prefix">people</i> Serve:<span class="bold-text"> {{ recipes.serves }}</span></td>
+                    <td><i class="material-icons prefix">access_time</i> Time:<span class="bold-text">
+                            {{ recipes.prep_time }} </span></td>
+                    <td><i class="material-icons prefix">people</i> Serve:<span class="bold-text">
+                            {{ recipes.serves }}</span></td>
                 </tr>
             </tbody>
-        </table>
+        </table><!-- // table -->
         <div class="row">
             <div class="col s12 edit-info">
                 {% if 'username' in session %}
                 <a href="{{ url_for('edit_recipe', recipe_id = recipes._id) }}"
                     class="waves-effect waves-light btn margin-r"><i class="material-icons left">edit</i>Edit</a>
-                <a href="#modal_confirm" class="waves-effect waves-light btn modal-trigger margin-r delete"><i class="material-icons left">delete_forever</i>Delete</a>
+                <a href="#modal_confirm" class="waves-effect waves-light btn modal-trigger margin-r delete"><i
+                        class="material-icons left">delete_forever</i>Delete</a>
                 {% else %}
                 <div class="col s12 user-note">
-                    <p>Please <a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to edit or delete recipe</p>
-                </div>
+                    <p>Please <a href="{{ url_for('login') }}">Login</a> or <a
+                            href="{{ url_for('register') }}">Register</a> to edit or delete recipe</p>
+                </div><!--// col user-note -->
                 {% endif %}
                 <!-- Modal Structure -->
                 <div id="modal_confirm" class="modal">
                     <div class="modal-content">
                         <h3>{{ recipes.recipe_name }}</h3>
                         <p>Do you want to delete this recipe? </p>
-                    </div>
+                    </div><!-- // modal-content -->
                     <div class="modal-footer">
                         <a href="{{ url_for('delete_recipe', recipe_id = recipes._id) }}"
                             class="waves-effect waves-light btn-small delete">Delete<i
                                 class="material-icons left">delete_forever</i></a>
                         <a href="#!" class="waves-effect waves-light btn-small modal-close cancel">Cancel
                             <i class="material-icons left">cancel</i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- -->
+                    </div><!-- // modal-footer -->
+                </div><!-- // modal-->
+            </div><!--// col -->
+        </div><!--// row-->
+    </div><!-- //col offset l1 -->
     <div class="row description">
         <div class="col s12">
             <p>{{ recipes.description }}</p>
         </div>
-    </div>
+    </div><!-- // description -->
     <div class="row">
         <div class="col s12 l5">
             <h3 class="preps">Ingredients:</h3>
@@ -68,17 +86,17 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>
-        </div>
+            </table><!-- // table -->
+        </div><!-- // col m5-->
         <div class="col s12 l6 offset-l1">
             <h3 class="preps">Preparation Steps</h3>
             <!-- add index and loop throguth each step -->
             {% for step in recipes.method %}
             <p><span class="bold-item">{{ loop.index }}.</span> {{ step }}</p>
             {% endfor %}
-        </div><!-- // col m7-->
-    </div><!-- // col m5-->
-</div><!-- // row-->
+        </div><!-- // col l6-->
+    </div><!-- // row-->
+</div><!-- // row recipe-details -->
 
 {% endblock %}
 {% block footer %}
