@@ -80,7 +80,8 @@ fieldset {
     color: #555;
     text-align: center;
     font-size: 35px;
-    transition: .2s linear all; 
+    transition: .2s linear all;
+    box-shadow: 0px 0px 5px 1px grey; 
 }
 
 #backTop:hover {
@@ -163,7 +164,7 @@ fieldset {
     transform: scale(1.25);
     transition: linear all .3s;
     opacity: .7;
-    border-radius: none;
+    border-radius: 0;
 }
 
 .card .card-image img:hover {
@@ -326,4 +327,13 @@ footer {
     margin-top: 60px;
     color: white;
     text-align: center;
+}
+
+.alert {
+    padding: 15px;
+    margin: 50px 0 0 0;
+    border: 1px solid #d6e9c6;;
+    border-radius: 4px;
+    color: #3c763d;
+    background-color: #dff0d8;
 }
