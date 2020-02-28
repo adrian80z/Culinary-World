@@ -54,6 +54,7 @@ def register():
         existing_user = users.find_one({"name": request.form["username"]})
         existing_email = users.find_one({"email": request.form["email"]})
 
+        # if username or email is not in collection insert it else display appropriate flash message
         if existing_user is None:
             if existing_email is None:
                 hashpass = bcrypt.hashpw(
@@ -69,8 +70,10 @@ def register():
                 session["username"] = request.form["username"]
                 return redirect(url_for("index"))
 
-            return render_template("registration.html", title="Registration")
-        return render_template("registration.html", title="Registration")
+            flash("Email already exist!")
+            return redirect(url_for("register"))
+        flash("Username already exist!")
+        return redirect(url_for("register"))
     return render_template("registration.html", title="Registration")
 
 
@@ -87,6 +90,7 @@ def login():
                 == login_user["password"]
             ):
                 session["username"] = request.form["username"]
+                flash("You were successfully logged in")
                 return redirect(url_for("all_recipes"))
 
     return render_template("login.html", title="Login")
@@ -97,6 +101,7 @@ def login():
 def logout():
     # remove the username from the session
     session.pop("username", None)
+    flash("You were successfully logged out")
     return redirect(url_for("all_recipes"))
 
 
@@ -209,5 +214,5 @@ def find_recipe():
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=True)
+    app.run(host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=False)
 
