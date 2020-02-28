@@ -8,7 +8,11 @@ body {
 }
 
 main {
-    min-height: 300px;
+    min-height: 500px;
+}
+
+h5 {
+    margin-bottom: 2em;
 }
 
 nav .nav-wrapper {
