@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     /* Dynamically add new input field to ingredients form*/
     $(".add-input-field").on("click", function () {
-        $('<input type="text" class="validate" name="ingredients" placeholder="Add next ingredient" maxlength="100">').insertBefore(".add-input-field");
+        $('<input type="text" class="validate" name="ingredients" placeholder="Add next ingredient" required maxlength="100">').insertBefore(".add-input-field");
     });
 
     /* Removes last input element from ingredients form*/
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     /* Dynamically add new input field to steps form */
     $(".add-step").on("click", function () {
-        $('<textarea name="method" class="materialize-textarea" placeholder="Add next step" maxlength="450" ></textarea>').insertBefore(".add-step");
+        $('<textarea name="method" class="materialize-textarea" placeholder="Add next step" required maxlength="450" ></textarea>').insertBefore(".add-step");
     });
  
     /* Removes last input element from steps form */
