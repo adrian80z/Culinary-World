@@ -215,12 +215,13 @@ The project was deployed using Heroku as a hosting platform.
 From heroku dashboard go to settings and set config vars to:
  - IP : 0.0.0.0, 
  - PORT : 5000
- - MONGO_URI : mongodb://<dbuser>:<dbpassword>@ds253203.mlab.com:53203/online_cookbook, ensuring that you update the username and password.
+ - MONGO_URI :mongodb+srv://<dbuser>:<dbpassword>@testdatabase-znzqy.mongodb.net/recipesDB?retryWrites=true&w=majority, ensuring that you update the username and password.
  - SECRET_KEY: YOUR_KEY
  
 Click More > Restart all Dynos
 
 A website can be found on Heroku (https://culinary-world.herokuapp.com/)
+
 The repository can be found on Github (https://github.com/adrian80z/Culinary-World)
 
 ## Credits
